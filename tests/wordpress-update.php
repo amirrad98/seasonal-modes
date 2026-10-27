@@ -58,9 +58,10 @@ sm_assert(isset($updates->response[$plugin]), 'WordPress core offers the newer G
 sm_assert($updates->response[$plugin]->new_version === $version, 'offered version matches release manifest');
 sm_assert($updates->response[$plugin]->package === $manifest['download_url'], 'offer points to the installable release ZIP');
 sm_assert(!isset($updates->response[$plugin]->autoupdate), 'auto-update remains the site administrator choice');
-$upgrader = new Plugin_Upgrader(new Automatic_Upgrader_Skin());
-$result = $upgrader->upgrade($plugin, array('clear_update_cache' => true));
-sm_assert($result === true, 'WordPress Plugin_Upgrader successfully installs the release ZIP');
+// Match wp_ajax_update_plugin(), the Plugins screen's Update now path.
+$upgrader = new Plugin_Upgrader(new WP_Ajax_Upgrader_Skin());
+$result = $upgrader->bulk_upgrade(array($plugin), array('clear_update_cache' => true));
+sm_assert(is_array($result) && isset($result[$plugin]) && is_array($result[$plugin]), 'WordPress Plugin_Upgrader successfully installs the release ZIP');
 $installed = get_plugin_data(WP_PLUGIN_DIR . '/' . $plugin, false, false);
 sm_assert($installed['Version'] === $version, 'plugin files now contain the new version');
 sm_assert(is_plugin_active($plugin), 'plugin activation is preserved');

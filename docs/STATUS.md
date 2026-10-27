@@ -16,3 +16,9 @@ Disposable local WordPress is unavailable (Docker socket denied); actual core up
 - Local Git initialization is BLOCKED: the workspace prohibits writing .git. Online repository history can still be created through the authenticated GitHub connection.
 
 Corrective Plan Guardian audit: PASS for M1 completion and M2 readiness; future-version/add-pack regression and tag SHA checks independently verified.
+
+## M2 CI test correction
+
+First CI run 40441506398: both PHP test jobs passed; both actual WordPress jobs installed the new plugin successfully but failed activation preservation. The harness used Plugin_Upgrader::upgrade(), which deactivates for a browser-mediated reactivation. Corrected to WP_Ajax_Upgrader_Skin plus bulk_upgrade(), matching core wp_ajax_update_plugin and preserving the activation assertion. Rerun pending.
+
+Public repository created: https://github.com/amirrad98/seasonal-modes. Initial source commit: 2a1a9283df89a7084aeb14cd86cf3d97d6fa5f7a.
