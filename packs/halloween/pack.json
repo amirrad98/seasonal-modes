@@ -1,0 +1,83 @@
+{
+  "name": "Halloween",
+  "version": "1.0.0",
+  "window": {
+    "start": "10-15",
+    "end": "11-01"
+  },
+  "colors": {
+    "accent": "#c2410c",
+    "accentSoft": "#fed7aa",
+    "ink": "#1c1917",
+    "selectionBackground": "#fed7aa",
+    "selectionText": "#1c1917",
+    "dark": {
+      "accent": "#fb923c",
+      "accentSoft": "#7c2d12"
+    }
+  },
+  "headerStripe": true,
+  "logoBadge": {
+    "image": "images/pumpkin.svg",
+    "size": 22,
+    "rotate": 14
+  },
+  "corners": {
+    "image": "images/cobweb-corner.svg",
+    "width": 257,
+    "height": 254,
+    "opacity": 0.32,
+    "darkOpacity": 0.26,
+    "invertInDark": true
+  },
+  "topWebs": {
+    "opacity": 0.55,
+    "darkOpacity": 0.45,
+    "invertInDark": true,
+    "left": {
+      "image": "images/cobweb-top-left.svg",
+      "size": 230,
+      "mobileSize": 120,
+      "rotate": -3,
+      "offsetX": -6,
+      "offsetY": -4
+    },
+    "right": {
+      "image": "images/cobweb-top-right.svg",
+      "size": 170,
+      "mobileSize": 92,
+      "rotate": 5,
+      "offsetX": -2,
+      "offsetY": -10
+    }
+  },
+  "cursors": {
+    "default": {
+      "image": "images/cursor-spider-32.png",
+      "x": 16,
+      "y": 4
+    },
+    "pointer": {
+      "image": "images/cursor-pumpkin-32.png",
+      "x": 16,
+      "y": 16
+    }
+  },
+  "intro": {
+    "type": "crawl",
+    "image": "images/spider.svg"
+  },
+  "credit": {
+    "text": "Halloween graphics: %1$s (CC BY 4.0, resized) and a cobweb by tom via %2$s (CC0).",
+    "links": [
+      {
+        "label": "Twemoji",
+        "url": "https://github.com/jdecked/twemoji"
+      },
+      {
+        "label": "Openclipart",
+        "url": "https://commons.wikimedia.org/wiki/File:Spiders_web.svg"
+      }
+    ]
+  }
+}

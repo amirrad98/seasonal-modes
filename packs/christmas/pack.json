@@ -1,0 +1,81 @@
+{
+  "name": "Christmas",
+  "version": "1.0.0",
+  "window": {
+    "start": "12-01",
+    "end": "12-31"
+  },
+  "colors": {
+    "accent": "#b91c1c",
+    "accentSoft": "#fecaca",
+    "ink": "#14532d",
+    "selectionBackground": "#fecaca",
+    "selectionText": "#1c1917",
+    "dark": {
+      "accent": "#f87171",
+      "accentSoft": "#7f1d1d"
+    }
+  },
+  "headerStripe": {
+    "colors": ["#c81e1e", "#ffffff"]
+  },
+  "logoBadge": {
+    "image": "images/tree.svg",
+    "size": 22,
+    "rotate": 8
+  },
+  "corners": {
+    "image": "images/snowflakes-corner.svg",
+    "width": 260,
+    "height": 260,
+    "opacity": 0.4,
+    "darkOpacity": 0.45,
+    "invertInDark": false
+  },
+  "topWebs": {
+    "opacity": 1,
+    "darkOpacity": 0.95,
+    "invertInDark": false,
+    "left": {
+      "image": "images/garland-top-left.svg",
+      "size": 245,
+      "mobileSize": 125,
+      "rotate": -2,
+      "offsetX": -8,
+      "offsetY": -6
+    },
+    "right": {
+      "image": "images/garland-top-right.svg",
+      "size": 190,
+      "mobileSize": 98,
+      "rotate": 4,
+      "offsetX": -4,
+      "offsetY": -12
+    }
+  },
+  "cursors": {
+    "default": {
+      "image": "images/cursor-snowflake-32.png",
+      "x": 16,
+      "y": 16
+    },
+    "pointer": {
+      "image": "images/cursor-gift-32.png",
+      "x": 16,
+      "y": 16
+    }
+  },
+  "intro": {
+    "type": "snow",
+    "image": "images/snowflake.svg"
+  },
+  "credit": {
+    "text": "Christmas graphics: %1$s (CC BY 4.0, resized).",
+    "links": [
+      {
+        "label": "Twemoji",
+        "url": "https://github.com/jdecked/twemoji"
+      }
+    ]
+  }
+}

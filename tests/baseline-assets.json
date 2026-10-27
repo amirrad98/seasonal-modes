@@ -1,0 +1,22 @@
+{
+  "assets/css/core.css": "80673d1ccac2999facc09838d501cdde2cd9aca92337568bd893b8d48c3db95d",
+  "assets/js/core.js": "cf142ac3523c5d5bb1fe1b978ea6964b301769e45928f91b7c61bfb9e2aba16a",
+  "packs/christmas/CREDITS.md": "8ecf1f87cf5d1e400c9037b6d639c82ba36a3c4990305c7b16b22f86c5e766ec",
+  "packs/christmas/images/cursor-gift-32.png": "1dd24baabae147391e507f2ba012f91ccfcafb41cdb2259ed48f2dd955c92598",
+  "packs/christmas/images/cursor-snowflake-32.png": "cc4a59fae98f9592a053a49057145813f64b610cf9115933b8a035ca51c0b41c",
+  "packs/christmas/images/garland-top-left.svg": "6e6f7cf4acd0a7cf778fd63d48cd287ba5787f04e6720182e58691a57e48753e",
+  "packs/christmas/images/garland-top-right.svg": "94d0402586d57f2d73ecf8164c7ea6e7adf00621d62f173e7d46bda195f27e78",
+  "packs/christmas/images/snowflake.svg": "60e61a5514f41bcc9bc2bcffbd30924b3e8b152d9e7a4b3d70d02c310b51b459",
+  "packs/christmas/images/snowflakes-corner.svg": "087b4cccda355815b0565c29991630871443e6fa5f3960738703a6aa70ab00dd",
+  "packs/christmas/images/tree.svg": "1f32af98c553d6fc84f2d58944ada5585939bc59d3122669062d5cac7467edea",
+  "packs/christmas/pack.json": "c90bcab8797f872c9a7f738f613757e1cc1dc9d8105ceaeebd3f5398259856d0",
+  "packs/halloween/CREDITS.md": "8ddfa0d2b7044a84316290e48adb2789f135e5ec469db6bdcdf01e1bce0ae617",
+  "packs/halloween/images/cobweb-corner.svg": "af1fe32ffb162d73afcd89f2febef0278f5128ffd3004639a14f720286f80ccb",
+  "packs/halloween/images/cobweb-top-left.svg": "31f7aafa43dd784a9db32f5ba94c71318a5a393e271d512bb256089785918af0",
+  "packs/halloween/images/cobweb-top-right.svg": "c9853a03789e0f5a7e4b2043b97e442dabe560b42dd60746da0eb3a0aae66cb9",
+  "packs/halloween/images/cursor-pumpkin-32.png": "62362645cad5a8c979436cd76e2e4b880f2c93015bff2c07909dfce38287e2c7",
+  "packs/halloween/images/cursor-spider-32.png": "46263d73eda531da50b2ae948ceada443dc9fa52a0ab1700e8911777e75f8b51",
+  "packs/halloween/images/pumpkin.svg": "670d346773d35a244b4a26d85649808be07f7758db31b63fe648be657f3be22a",
+  "packs/halloween/images/spider.svg": "fcda9804ea2366c9951d697a5ef5e68bc9b83d1fcf710134406f839460b873c8",
+  "packs/halloween/pack.json": "6813be194626c7172f1ff66b850476cec52b633ce0315b12a2a58c157f21be44"
+}

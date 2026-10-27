@@ -1,0 +1,94 @@
+name: Validate plugin
+on:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: PHP syntax and behavioral tests
+        run: |
+          find . -name '*.php' -not -path './dist/*' -print0 | xargs -0 -n1 php -l
+          php tests/run.php
+      - name: JavaScript, packs, and release packaging
+        run: |
+          node --check assets/js/core.js
+          python3 scripts/check.py
+          python3 -m unittest discover -s tests -p 'test_*.py'
+          python3 scripts/build.py
+  wordpress:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - wordpress: '6.3'
+            php: '7.4'
+          - wordpress: latest
+            php: '8.4'
+    services:
+      database:
+        image: mariadb:11
+        env:
+          MARIADB_ROOT_PASSWORD: test-only-password
+          MARIADB_DATABASE: wordpress
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s --health-timeout=5s --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysqli, zip
+          tools: wp-cli
+          coverage: none
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Build plugin and create disposable WordPress site
+        env:
+          WORDPRESS_VERSION: ${{ matrix.wordpress }}
+        run: |
+          set -euo pipefail
+          python3 scripts/build.py
+          mkdir -p "$RUNNER_TEMP/wordpress"
+          cd "$RUNNER_TEMP/wordpress"
+          wp core download --version="$WORDPRESS_VERSION"
+          wp config create --dbname=wordpress --dbuser=root --dbpass=test-only-password --dbhost=127.0.0.1:3306
+          wp core install --url=http://example.test --title='Disposable test' --admin_user=test-admin --admin_password=temporary-test-password --admin_email=test@example.test --skip-email
+          wp plugin install "$GITHUB_WORKSPACE/dist/seasonal-modes.zip" --activate
+          # Exercise an older updater-enabled installation using the same engine.
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          path = Path('wp-content/plugins/seasonal-modes/seasonal-modes.php')
+          source = re.sub(r'( \* Version:\s*)\S+', r'\g<1>1.0.0', path.read_text())
+          source = re.sub(r"const VERSION\s*=\s*'[^']+';", "const VERSION = '1.0.0';", source)
+          path.write_text(source)
+          PY
+      - name: Verify actual WordPress update and preserved settings
+        env:
+          SEASONAL_MODES_TEST_SITE: '1'
+          SEASONAL_MODES_SOURCE: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP/wordpress"
+          wp eval-file "$GITHUB_WORKSPACE/tests/wordpress-update.php"
+          wp eval 'if (Seasonal_Modes::active_pack()["slug"] !== "custom-event") { WP_CLI::error("Custom pack did not load after upgrade"); } WP_CLI::success("Custom pack loads in a fresh process after upgrade.");'
